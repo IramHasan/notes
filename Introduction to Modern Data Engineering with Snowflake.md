@@ -28,3 +28,14 @@
   - create views for analysis
 - raw data can be left completely untouched and instead apply transformations to create new objects i.e. materialized views
 - allows re-use of raw data as much as possible without compromising its integrity 
+### Data Transformations with Snowpark 
+- perform data transformations in python, Java, Scala
+- configure the runtimes for languages i.e. using different versions of Python
+- DataFrame API for processing data and performing data transformations
+- Create dataframes using the data &rarr; perform transformations &rarr; write results to new views / tables
+- Similar to Pyspark / other dataframe APIs
+- Data transformations can be pushed to Snowflake's compute engine
+- Snowpark code can be written in:
+  - scripts / code base 
+  - snowflake notebook
+  - IDE using snowflake extension
