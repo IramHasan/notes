@@ -29,7 +29,7 @@
 - raw data can be left completely untouched and instead apply transformations to create new objects i.e. materialized views
 - allows re-use of raw data as much as possible without compromising its integrity 
 ### Data Transformations with Snowpark 
-- perform data transformations in python, Java, Scala
+- perform data transformations in Python, Java, Scala
 - configure the runtimes for languages i.e. using different versions of Python
 - DataFrame API for processing data and performing data transformations
 - **Flow:** create dataframes using the data &rarr; perform transformations &rarr; write results to new views / tables
@@ -39,3 +39,24 @@
   - scripts / code base 
   - Snowflake notebook
   - IDE using Snowflake extension
+- we can create Snowflake notebooks or import ipynb files into Snowflake to utilize our warehouse's computing ability
+- we can search for snowpark-python to install the correct packages in Snowflake's package picker
+- start an active Snowpark session using `get_active_session()` command - allows us to start a Snowflake session without manually configuring a connections file
+```
+from snowflake.snowpark.context import get_active_session
+session = get_active_session()
+```
+- we can load data directly from our tables and views by passing them into our session objects
+```
+dataframe = session.table("database.schema_name")
+```
+- we can now directly apply filters/transformations to specific columns within our dataframe in a very straight forward manner
+- the Dataframe API allows for:
+  - easy aggregations
+  - grouping by multiple columns
+  - creating aggregation columns
+  - sorting on top of the aggregation
+- we can create Dataframes that are then converted into views easily:
+```
+dataframe.create_or_replace_view("database.view_name")
+```
