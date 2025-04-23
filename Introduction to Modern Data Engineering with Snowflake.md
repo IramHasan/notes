@@ -60,3 +60,8 @@ dataframe = session.table("database.schema_name")
 ```
 dataframe.create_or_replace_view("database.view_name")
 ```
+### User Defined Functions (UDFs)
+- performing manual data transformations does not scale
+- in practice, we need reusable chunks of code in a centralized fashion to ensure consistency of pipelines
+- UDFs - write own custom logic to be reused in queries and data transformations
+- typically used to capture logic 
