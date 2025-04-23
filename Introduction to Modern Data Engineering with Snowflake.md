@@ -18,4 +18,13 @@
   - stored procedures
 - streams offer efficient transformations
 - dynamic tables offer automatic transformations
-- 
+### Data Transformations with SQL
+- Snowflake supports the common standardized version of ANSI SQL
+- Snowflake has its own SQL dialect w/ variations
+- Data tranformations in SQL can be done by writing SQL in a workbook and executing blocks to:
+  - explore data
+  - pull data from the market place to compare external factors
+  - draw insights
+  - create views for analysis
+- raw data can be left completely untouched and instead apply transformations to create new objects i.e. materialized views
+- allows re-use of raw data as much as possible without compromising its integrity 
