@@ -4,7 +4,7 @@
 - raw data won't have the insights we are looking for
 - before extracting insights we must transform data to an end state usable for analytics
 - data transformations are formed against the raw data to get closer to our desired insights
-- common data transformations:
+- **common data transformations:**
   - address missing / incorrect data
   - fix formatting
   - aggregations
