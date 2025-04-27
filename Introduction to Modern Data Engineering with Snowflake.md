@@ -182,7 +182,10 @@ AS
 ### Data Transformations in VS Code 
 - Snowflake extension for VS Code 
 - execute SQL and Python against our Snowflake environment directly from VS Code
-- 
+- This allows us to connect to our Snowflake environment either using our account URL or the configuration setup in our Snowflake CLI
+- We can execute code against the data in the Snowflake environment directly from VS Code
+- there is a query history pane, updating the queries executed within VS Code
+- we also have an object explorer to help us find the databases, tables, and views being generated
 
 ### Best Practices for Data Transformations
 - Use SQL, Snowpark
