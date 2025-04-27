@@ -193,4 +193,10 @@ AS
 - stored procedures for complex procedural logic
 - streams for change tracking and incremental data processing
 - dynamic tables for automatic transformations - set a desired end state by associating transformation logic and a refresh rate for the transformations
-- 
+
+## Module 4
+### Delivery of Data Products
+### Data Sharing on Snowflake Marketplace
+### Streamlist in Snowflake Applications
+### Snowflake  Native Applications
+### Best Practices for Data Product Delivery
