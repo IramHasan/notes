@@ -103,13 +103,50 @@ dataframe.create_or_replace_view("database.view_name")
   ```
   CREATE OR REPLACE STREAM stream_name ON TABLE database.schema.table_name;
   ```
-  - the stream will contain metadata:
-    - metadata$action - information on the type of operation done to the table 
-    - metadata$isupdate - information on whether this row was part of an update operation
-    - metadata$row_id
+- the stream will contain metadata:
+  - metadata$action - information on the type of operation done to the table 
+  - metadata$isupdate - information on whether this row was part of an update operation
+  - metadata$row_id
 - streams do not return deleted actions
 - streams allow us to process incremental changes to a table or view
 - they give us a lot of granular and efficient control over our transformations
 
-### 
+### Stored Procedures
+- when we want to go beyond specific computations or capture and reuse more complex logic we use stored procedures
+- more complex logic that may require a stored procedure includes:
+  - executing a series of operations (multiple SQL statements, transactional logic)
+  - they may be used to generate reports
+  - execute specific critical business logic
+- a set of instructions that typically logic that is more complex and broder in scope than a UDF
+- stored procedures can define and call on UDFs within them
+- the pattern for working with stored procedures is similar to UDFs:
+  - define the procedure
+  - definition can be written in SQL, Python, Scala, Java, Javascript
+  - call the stored procedure using the call syntax and specifying the name of the procedure
+- you can write and call stored procedures directly within Snowflake or in a development environment
+- stored procedures can be used to process a stream
+- we create the stored procedure
+```
+CREATE OR REPLACE PROCEDURE procedure_path.procedure_name() 
+RETURNS VALUE i.e. STRING
+LANGUAGE i.e. PYTHON
+RUNTIME_VERSION = X.XX i.e. '3.10'
+HANDLER = reference_to_function_containing_logic_for_procedure i.e. 'process_order_header_stream'
+PACKAGES = packages-for-logic i.e. 'snowflake-snowpark-python
+```
+- again we use a double dollar sign delimiter to contain all the logic / code for the stored procedure
+- we may query the stream to look for all new `INSERT` actions against our table
+- we can filter for specific information such as a specific ID
+- we can perform transformations such as aggregations or creating new columns to write to a new table 
+- we can automate these procedures to run on a periodic cadence i.e. every 24 hours
+- stored procedures make it easy to take large chunks of logic, place them in a centralized location and then reuse them as needed
+- common functions of stored procedures:
+  - perform aggregations
+  - update records
+  - perform complex procedural logic
+- they become even more powerful when automated
+- stored procedures are used to store and define complex logic that can be easily reused at scale
+
+### Dynamic Tables 
+- streams allow us to focus on processing incremental changes to an underlying table 
     
