@@ -39,7 +39,8 @@
 - data transformations can be pushed to Snowflake's compute engine
 - Snowpark code can be written in:
   - scripts / code base 
-  - Snowflake notebook
+  - Snowflake notebook - tool for executing SQL, Python and building data pipelines
+  - Like a Jupyter notebook, allows us to execute individual cells, executing small chunks of the code at a time 
   - IDE using Snowflake extension
 - we can create Snowflake notebooks or import ipynb files into Snowflake to utilize our warehouse's computing ability
 - we can search for snowpark-python to install the correct packages in Snowflake's package picker
@@ -66,4 +67,49 @@ dataframe.create_or_replace_view("database.view_name")
 - performing manual data transformations does not scale
 - in practice, we need reusable chunks of code in a centralized fashion to ensure consistency of pipelines
 - UDFs - write own custom logic to be reused in queries and data transformations
-- typically used to capture logic 
+- typically used to capture logic that perform a specific computation i.e. a calculation, or format a value
+- update the logic of the UDF in one place vs. several
+- Key points about UDFs:
+  - you can write UDFs in many different supported languages
+  - UDFs are typically intended to return a single value - making them useful for very specific tasks
+- More complex logic would use stored procedures
+- Typical steps for creating and using UDFs:
+  - Define the function
+  - Write its logic
+  - Invoke the UDF during transformations / other data processing
+- **UDFs are created by:**
+  - specifying the function keyword
+  - the schema where it will live
+  - the name of the funciton
+  - specify that the function will accept an argument of type NUMBER
+  - specify that the function will return a value of type NUMBER
+  - AS keyword points to the definition of the UDF
+  - two sets of dollar signs ($) act as opening and closing delimiters
+  - the function logic should be encapsulated between these two sets of delimiters
+- UDFs can be used to derive new columns based on existing columns
+- by capturing logic in a UDF we can reuse it throughout the transformations in our data pipeline and easily mange it from a centralized definition
+
+### Efficient Transformations w/ Streams
+- we want to maximize efficiency of data transformations by only processing rows with changes
+- streams are objects in Snowflake that are able to keep precise track of all the changes that have been made to a table / view
+- if we create a stream to track a table, we can consume the stream to view the latest changes made to that table
+- we consume the stream in a DML statement
+- after consuming the stream, it essentially resets and starts recording subsequent changes from that point forward
+- streams are great for processing incremental changes to tables and makes transformations more efficient
+- we can extend this behavior for more complex transformations
+  - we can perform an aggregation on only the new rows rather than reprocessing a whole table
+  - we can then combine that value with whatever previously aggregated value as calculated for the table
+  - we create streams to keep our views/tables up to date:
+  ```
+  CREATE OR REPLACE STREAM stream_name ON TABLE database.schema.table_name;
+  ```
+  - the stream will contain metadata:
+    - metadata$action - information on the type of operation done to the table 
+    - metadata$isupdate - information on whether this row was part of an update operation
+    - metadata$row_id
+- streams do not return deleted actions
+- streams allow us to process incremental changes to a table or view
+- they give us a lot of granular and efficient control over our transformations
+
+### 
+    
