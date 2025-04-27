@@ -1,4 +1,6 @@
 # Introduction to Modern Data Engineering with Snowflake
+![image](https://github.com/user-attachments/assets/fdbb4bd0-53ca-4863-afd2-8d96d5edcb6d)
+
 ## Module 3
 ### Data Transformations
 - raw data won't have the insights we are looking for
