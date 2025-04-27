@@ -148,5 +148,46 @@ PACKAGES = packages-for-logic i.e. 'snowflake-snowpark-python
 - stored procedures are used to store and define complex logic that can be easily reused at scale
 
 ### Dynamic Tables 
-- streams allow us to focus on processing incremental changes to an underlying table 
-    
+- streams allow us to focus on processing incremental changes to an underlying table
+- we can focus on specific types of changes to the table as well i.e. `DELETE`, `INSERT`, etc.
+- we still need to make choices on what we will do with the data tracked by the stream
+- dynamic table - a special type of table in Snowflake that automatically updates itself with the latest data using a predefined query
+- helps ensure that the table always reflects the most current information from its source tables
+- don't need to write any additional logic to process the changes or types of chanegs to the underlyic table
+- allows us to reach a desired end state with our data really quickly
+- easily configure the freshness for a dynamic table
+- we can specify how often a dynamic table should be refreshed using:
+```
+LAG = <duration>
+```
+- dynamic tables can help simplify our data pipeline architecture when refreshing data
+- dynamic tables make it reall easy to specify freshness - how often our table should update
+- we can use dynamic tables to replace a combination of streams, stored procedures, and tasks
+```
+CREATE OR REPLACE DYNAMIC TABLE DATABASE.SCHEMA.TABLE_NAME
+WAREHOUSE = "WAREHOUSE_NAME"
+TARGET_LAG = DURATION i.e. '1 minute'
+AS
+<QUERY>
+```
+- we can process incremental changes to data with streams and stored procedures
+- we can use dynamic tables for automatic processing of changes to underlying data
+- these approaches have benefits and tradeoffs
+- in practice, we have source tables with raw data being updated on a continuous basis likely due to an automated process
+- if we need fine-grain tracking we must utilize a stream, if we need to perform complex logic based on those details
+- combining streams with stored procedures and tasks empowers them by extending what can be done in our procedural logic and giving more control over the refresh schedule
+- if we have relatively stable tables, that just require a target data freshness
+- dynamic tables are a great way of automating transformations without the overhead of streams or tasks
+
+### Data Transformations in VS Code 
+- Snowflake extension for VS Code 
+- execute SQL and Python against our Snowflake environment directly from VS Code
+- 
+
+### Best Practices for Data Transformations
+- Use SQL, Snowpark
+- UDFs for calculations
+- stored procedures for complex procedural logic
+- streams for change tracking and incremental data processing
+- dynamic tables for automatic transformations - set a desired end state by associating transformation logic and a refresh rate for the transformations
+- 
