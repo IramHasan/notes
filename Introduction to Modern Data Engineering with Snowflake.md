@@ -196,7 +196,29 @@ AS
 
 ## Module 4
 ### Delivery of Data Products
+- the goal of a data pipeline is to take raw data as the input and output something of value in the form of dashboards, serving data to web applications, or feeding other data systems
+- delivering a data product is an outcome, but not a final stage
+- we maintain a pipeline to account for:
+  - changes to source data
+  - new sources of data
+  - new pipeline requirements
 ### Data Sharing on Snowflake Marketplace
-### Streamlist in Snowflake Applications
-### Snowflake  Native Applications
+- the product being delivered when data sharing is the dataset(s)
+- we can share data sets through creating public listings in Snowflake's marketplace
+- we can create private listings to share with specific consumers
+- `Provider Studio` in Snowflake, is where we can create a new listing for a dataset
+- We can configure the consumers we want to share the data with
+- A very powerful way of delivering a data product to consumers
+### Streamlit in Snowflake Applications
+- an open source python library for building data apps in python
+- apps built with streamlit are easy to deploy and share
+- readily available in Snowflake - Streamlit in Snowflake
+- We can use Streamlit components with custom user interfaces to build complex data and AI applications
+  - we can capture user input in the form of dropdowns, text inputs, radio buttons
+  - bring in open source packages to be used in the application
+  - build RAG-based chatbots that talk to data in natural language
+- Streamlit is natively available within Snowflake, known as "Streamlit in Snowflake"
+- We can build data apps using just Python, all within the account
+- We can easily share these apps with users in your account
+### Snowflake Native Applications
 ### Best Practices for Data Product Delivery
