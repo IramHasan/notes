@@ -244,3 +244,8 @@ AS
 - Pipelines are heavily dependant on usecase
 - Snowflake is flexible for sharing products
 - We want to build continuous end-to-end data pipelines
+## Module 5
+### What is orchestration
+### Automation with tasks
+### Orchestration with DAGs
+### Recap and best practicies for pipeline orchestration
