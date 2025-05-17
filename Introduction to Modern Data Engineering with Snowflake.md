@@ -221,4 +221,26 @@ AS
 - We can build data apps using just Python, all within the account
 - We can easily share these apps with users in your account
 ### Snowflake Native Applications
+- Snowflake Native Applications are fully contained applications that run entirely  within a Snowflake account
+- Apps are built by application providers and listed on the Snowflake Marketplace
+- App consumers can discover install and run Snowflake Native Apps in their Snowflake account
+- Built with Snowflake as the core application stack - SQL, Snowpark, Streamlit, Snowflake
+- Leverage Snowpark container services to run a container image within Snowflake Native App
+- Application providers bundle the application into an application package to be distributed on the Snowflake marketplace w/ a billing model
+- Consumers are able to manage any and all permissions from within the application and power the app using their compute resources
+- Application is able to act on objects within the consumers account provided that the consumer has granted permissions to access those objects
+- we can share insights on proprietary data safely and easily to the consumer using a SNA
+#### Streamlit in Snowflake apps
+- typically bound to accounts (account-specific)
+- deployed in a specific snowflake account and shared with team members in that account
+#### Snowflake Native Applications
+- Listed on the Snowflake Marketplace
+- Installed and run in consumer accounts (powered by consumer resources)\
 ### Best Practices for Data Product Delivery
+- High quality transformed data sets is the final product that we are delivering
+- Snowflake marketplace can go beyond sharing those objects in your account to sharing the data to users in Snowflake
+- Streamlit in Snowflake
+- Snowflake Native Applications
+- Pipelines are heavily dependant on usecase
+- Snowflake is flexible for sharing products
+- We want to build continuous end-to-end data pipelines
