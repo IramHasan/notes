@@ -246,6 +246,18 @@ AS
 - We want to build continuous end-to-end data pipelines
 ## Module 5
 ### What is orchestration
+- The key aspect of building a data pipeline that levels up the power and robustness of a pipeline is automation
+- ITD framework makes it easy to understand the core moving parts of a data pipeline
+- Automation is a key concept that breathes life into a data pipeline
+- Automation underpins all aspects of the pipeline
+- Example of commonly automated things:
+  - data ingestion processes
+  - data transformations
+  - streams for incremental data processing
+- Data products reap the benefits of fresh and up to date data from automation
+- An ML model may not want to drift from the up to date data so to maintain it we must provide it with up to date data
+- How to harmoniously orchestrate the automation of hundreds of different things
 ### Automation with tasks
+
 ### Orchestration with DAGs
 ### Recap and best practicies for pipeline orchestration
