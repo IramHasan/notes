@@ -260,4 +260,7 @@ AS
 ### Automation with tasks
 
 ### Orchestration with DAGs
+- We can link tasks and specify the order in which they should execute
+- An example is doing automated transformations after an automated ingestion process - which takes place when new data is loaded in the account
+- Directed Acyclical Graphs (DAG) 
 ### Recap and best practicies for pipeline orchestration
