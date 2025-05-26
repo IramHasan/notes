@@ -117,5 +117,83 @@
 - Airflow Trigger DAG: Manually triggering a pipeline run outside of the scheduler. Useful for testing
   
 ## Introduction
-- Apache Airflow allows data engineers to create powerful pipelines involving different tasks for extracting, transforming, and persisting data across a whole process
+- Apache Airflow allows data engineers to create powerful pipelines involving different tasks for extracting, transforming, and persisting data across a whole process referred to as pipelines
+- an open-source platform for developing, scheduling, monitoring batch-oriented workflows
+- build workflows connecting with any technology
+- Web-based UI helps visualize, manage, and debug workflows
+- Workflow as code
+  - Dynamic: pipelines are defined in code, enabling dynamic dag generation and parameterization
+  - Extensible: Wide range of built in operators extended to fit your needs
+  - Flexible: Leverages Jinja templating engine to allow customizations
+- DAGs
+  - A model encapsulating everything needed to execute a workflow
+  - Schedule - when the workflow should run
+  - Tasks - discrete units of work that are run on workers
+  - Task dependencies - The order and conditions under which tasks execute
+  - Callbacks  Actions to take when the entire workflow completes
+  - Additional Parameters - other operational details
+  - A DAG represents a workflow, a collection of tasks
+  - We can initialize a DAG with a set ID, a start-time aand a schedule and clearly identify tasks and set dependencies between tasks
+  - We can use the task decorator to define a Python function as a task
+  - We can utilize `>>` operator to define dependency between tasks and control execution order
+  - Airflow parses scripts, schedules tasks and executes them in the defined order 
+  - Status of the DAG will be displayed in the web-interface
+  - Airflow tasks can run any code i.e. a Spark job, moving files between storage buckets, send email notifications
+  - We can look at the same DAG overtime with multiple runs, with each column representinga  single DAG run
+  - Provides several views to monitor and troubleshoot workflows i.e. DAG Overview view
+![image](https://github.com/user-attachments/assets/e83550b7-c746-4919-99a5-0cccfe46851e)
+
+## Why Airflow
+- A platform for orchestrating batch workflows offering a flexible framework with a wide range of built-in operators and easy integration with new technologies
+- For workflows with a clear start and end and running on a schedule
+- Code defined workflows
+  - version control (roll back to previous versions)
+  - team collaboration (multiple engineers work on the same workflow codebase)
+  - testing (validate pipeline logic through unit and integration tests)
+  - Extensibility: Customize workflows usinga  large ecosystem of of existing components or build your own
+- Easily define complex pipelines
+- Manually trigger DAGs, inspect logs, monitor task status
+- backfill DAG runs to process historical  data, or re-run only failed tasks to minimize cost and time
+- easily capture relationships between tasks
+
+## Why not Airflow
+- Airflow is not meant for continuous running, event-driven or streaming workloads
+- Compliments streaming systems like Kafka which handle real-time ingestion, writing data to storage
+- Define workflows through code NOT UI
+
+## What is Airflow?
+- Open source project that allows batching of certain jobs together, similar to CI/CD systems
+- Set-up of certain things to happen at certain times for a batch workflow platform
+- Bound by writing everything in Python to define all these tasks and how they are going to work together
+- Used to orchestrate certain actions together, with very clear way to start and end t hese batches of work that needs to happen at a certain interval, or not necessarily at a regular interval.
+- We construct these orchestrations through Python in order to put all of these jobs together
+- Rich scheduling and execution semantics - the ability to schedule something, but also the ways to trigger a run or execution of something - backfilling to perform a certain action in the past:
+  - Populate a database from scratch - re-run pipelines on historical data
+  - Re-running partial pipelines after fixing errors (very common in DE)
+- UI for inspecting pipeliens and tasks i.e. start time, failure, success, and an overview of pipelines over-time (past month, past year)
+- Manage tasks such as log outputs and retries, etc.
+- open source and customizable
+- highly customizable architectures
+- The ability to visualize task dependencies as graphs - extremely useful for understanding complex pipelines
+
+## Installing Apache Airflow
+- We can use Docker Compose to try out Apache Airflow
+- We will have connections to our database, Celery, brokers, etc.
+
+## Airflow UI 
+- DAGs can be turned on or off with switches in the Airflow web interface
+- The owner of the and runs of the tasks with the status of their runs is available in the interface
+- We can see the recent tasks, and also action on the DAG such as running them, or deleting them
+- Airflow provides information about the maximum run duration, the mean run duration, and the total successful runs
+- We can get different types of representations and visualizations of our run through the details, graph, gantt, and code interfaces of the Airflow Audit Logs
+- We can quickly inspect the actual code responsible for maintaining the DAG from  the Airflow UI
+- We can autorefresh and trigger DAGs directly from the UI
+- We have access to task tries, landing times, calendars all for  the specific DAGs
+
+## Airflow Fundamentals
+- Airflow DAG: Directed Acyclic Graph to model task dependencies
+- Airflow Operator: Represents a pipeline task
+- Airflow Hook: Connects to external systems
+- Airflow Backfill: Reruns historical DAG runs
+- Airflow CLI: Command line interface tool
 - 
