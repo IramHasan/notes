@@ -8,7 +8,6 @@
 - Dynamic - pipelines are defined in code, enabling dynamic dag generation and parameterization
 - Extensible - includes a wide range of built-in operators and can be extended to fit needs
 - Leverages Jinja templating engine, allowing for customization
-
 - DAG - the model that encapsulates everything that is needed to execute a workflow
 - DAG Attributes
   - **Schedule:** When the workflow should run
@@ -25,15 +24,32 @@
 - We can see the runs of a dag throughout time
 - Visual representation of the dag runs for monitoring and troubleshooting 
 - DAGs must start at one end and come to a completion - Directed Acyclic Graph 
-
 ## Tasks
 - task - node in your DAG - unit of work and best practice is to keep tasks atomic
 - A **task instance** represents a specific run of a task - A DAG + task + point in time 
-- A version of a task that ran historically - what was the task instance from 3 weeks ago @ midnight
-- tasks are meant to be specialized units of work responsible for doing specific things 
-- Operators exist for AWS services, Snowflake, Azure, Celery, etc. 
-
-## 
+  - A version of a task that ran historically - what was the task instance from 3 weeks ago @ midnight
+- tasks are meant to be specialized units of work responsible for doing specific things
+## Operators
+- Operators exist for AWS services, Snowflake, Azure, Celery, etc.
+- building blocks of Airflow
+- wrappers around each task that defines what the task does
+- i.e. running Python code is different from running a bash query 
+- Operators are very specific to the target environment where we want to use them
+## Providers 
+- seperate Python packages that contain all relevant modules (i.e. operators / sensors) for a third party service
+- they are collections of operators wrapped up with other utilities focused on something specific
+## Defining a DAG
+- DAGs are defined in software, you define a DAG using Python code like this:
+- We can define the operator with the task id, the table it's going to push to, the stage, etc.
+- We can use short-hands inside our dag code to create particular processes and tasks
+- DAGs all run in the UI, and we can visualize how they will run
+## Complex DAGs
+- nested dags, branches, complex dag systems
+- we can fetch data from Oracle, transfer it to S3, load it into Databricks and load that into Snowflake
+- The Taskflow API can also be used to create DAGs
+- both python operator and add_task decorator are fundamentally the same thing underneath - Airflow treats them the same
+- passing of data between tasks is more easy to understand in context of the Taskflow API
+  - if everything is being done in Python
 
 ## Why Airflow?
 - platform for orchestrating batch workflows
