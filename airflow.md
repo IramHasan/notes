@@ -1,5 +1,5 @@
 ## What is Airflow
-- platform for developing, scheduling, and monitoring batch oriented workflows
+- platform for developing, scheduling, and monitoring batch oriented workflows 
 - A web-based UI to visualize, manage, and debug workflows
 - Airflow can be run as a distributed system capable of handling massive workflows
 
